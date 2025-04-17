@@ -11,6 +11,8 @@ A neural network implementation for context-dependent decision making using a T-
     - `connectivity.py`: Engel Lab implemntation of connectivity_lstm
 - `LSTM_Analysis.py`/`plotting_functions.py`: plotting functions to aid in analyzing networks.  LSTM_analysis useful for testing if network is infering context.  plotting functions useful for determining if network is trained on task.
 
+- `ContextTraining/`: partial clone of base repo.  Work in progress to allow for context and trial counter to be inputs to network.
+
 
 
 ## Features
