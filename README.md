@@ -4,9 +4,14 @@ A neural network implementation for context-dependent decision making using a T-
 
 ## Project Structure
 
-- `Tmaze_UniToMulti.py`: Implements the T-maze task with option for unisensory or multisensory inputs
+- `UniToMulti.ipynb`/`MultitoUni.ipynb`: Jupyter notebooks for training models on tmaze tasks.
+- `Tmaze_UniToMulti.py`: Implements the T-maze task with option for unisensory or multisensory inputs that can be easily switched.
 - `lstm_net.py`: Implements LSTM network that will train on Tmaze task. Has option for Dale's Law as well as balance of excitatory and inhibitory ratio.
-    - `connectivity_lstm.py`
+    - `connectivity_lstm.py`: dependency for lstm_net determines rules units follow when interacting
+    - `connectivity.py`: Engel Lab implemntation of connectivity_lstm
+- `LSTM_Analysis.py`/`plotting_functions.py`: plotting functions to aid in analyzing networks.  LSTM_analysis useful for testing if network is infering context.  plotting functions useful for determining if network is trained on task.
+
+
 
 ## Features
 
@@ -27,7 +32,9 @@ The environment generates trials with the following properties:
 
 - NumPy
 - PyTorch
-- Python 3.x
+- Pandas
+- Scipy
+- Seaborn
 
 ## License
 
