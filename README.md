@@ -14,6 +14,9 @@ A neural network implementation for context-dependent decision making using a T-
 - `ContextTraining/`: partial clone of base repo.  Work in progress to allow for context and trial counter to be inputs to network.
 
 
+## On Going Work
+
+This repository is still a work in progress, activities for some trained models as well as where this is heading before being pushed to github can be followed [here](https://docs.google.com/document/d/12hmnnvVeFA1bg5FMkSGNtCJjN8OK23KWdj3bKicKtl0/edit?tab=t.0)
 
 ## Features
 
