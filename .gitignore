@@ -4,23 +4,29 @@ venv/
 env/
 ENV/
 
-# Python
-__pycache__/
-*.py[cod]
-*.so
-dist/
-build/
-*.egg-info/
-
-# PyTorch
+# Large files and directories
+TrainedModels/
+WeightsAndActivity/
 *.pth
 *.pt
 *.dll
 *.lib
 
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+dist/
+build/
+*.egg-info/
+
 # IDE
 .vscode/
 .idea/
+
+# Jupyter
+.ipynb_checkpoints/
 
 # OS
 .DS_Store
