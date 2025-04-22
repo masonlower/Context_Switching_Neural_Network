@@ -8,7 +8,7 @@ from numpy import linalg
 class Net_lstm(torch.nn.Module):
     # PyTorch module for implementing an LSTM to be trained on cognitive tasks.
     def __init__(self, n, alpha=0.2, sigma_rec=0.15, input_size=4, output_size=2, dale=True,
-                 activation=torch.nn.ReLU()):
+                 activation=torch.nn.ReLU(), dropout_prob=0.0, use_layer_norm=False):
         super(Net_lstm, self).__init__()
         self.alpha = torch.tensor(alpha)
         self.sigma_rec = torch.tensor(sigma_rec)
@@ -18,9 +18,13 @@ class Net_lstm(torch.nn.Module):
         self.activation = activation
         self.dale = dale
         self.device = 'gpu'
-        self.lstm_dropout = nn.Dropout(p =.20) #new
-        self.layer_norm = nn.LayerNorm(n) #new
-        #self.hidden = None
+        self.use_dropout = dropout_prob > 0
+        self.use_layer_norm = use_layer_norm
+        
+        if self.use_dropout:
+            self.lstm_dropout = nn.Dropout(p=dropout_prob)
+        if self.use_layer_norm:
+            self.layer_norm = nn.LayerNorm(n)
 
         if torch.cuda.is_available():
             self.device = 'cuda'
@@ -39,14 +43,14 @@ class Net_lstm(torch.nn.Module):
         # Initialize LSTM
         self.lstm = nn.LSTM(input_size, self.n, batch_first=True)
 
-        nn.init.orthogonal_(self.lstm.weight_hh_l0) #new
-        nn.init.orthogonal_(self.lstm.weight_ih_l0) #new
+        nn.init.orthogonal_(self.lstm.weight_hh_l0)
+        nn.init.orthogonal_(self.lstm.weight_ih_l0)
 
-        nn.init.zeros_(self.lstm.bias_ih_l0) #new
-        nn.init.zeros_(self.lstm.bias_hh_l0) #new
+        nn.init.zeros_(self.lstm.bias_ih_l0)
+        nn.init.zeros_(self.lstm.bias_hh_l0)
 
         self.output_layer = nn.Linear(self.n, self.output_size, bias=False)
-        nn.init.xavier_normal_(self.output_layer.weight, gain=0.1) #new
+        nn.init.xavier_normal_(self.output_layer.weight, gain=0.1)
 
         # Apply Dale's law and balance network
         if dale:
@@ -86,8 +90,10 @@ class Net_lstm(torch.nn.Module):
         # Forward propagate LSTM
         out, hidden = self.lstm(u + noise, hidden)
 
-        out = self.layer_norm(out)  # Apply layer normalization to LSTM output
-        out = self.lstm_dropout(out)  # Apply dropout to LSTM output
+        if self.use_layer_norm:
+            out = self.layer_norm(out)
+        if self.use_dropout:
+            out = self.lstm_dropout(out)
         
         # Apply output layer
         out = self.output_layer(out)

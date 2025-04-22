@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from matplotlib import gridspec
 import seaborn as sns
 import scipy as sy
-from net import *
+from LSTM_context import *
 from matplotlib.gridspec import GridSpec
 
 plt.rcParams["axes.grid"] = False
