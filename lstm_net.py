@@ -8,7 +8,11 @@ from numpy import linalg
 class Net_lstm(torch.nn.Module):
     # PyTorch module for implementing an LSTM to be trained on cognitive tasks.
     def __init__(self, n, alpha=0.2, sigma_rec=0.15, input_size=4, output_size=2, dale=True,
+<<<<<<< HEAD
                  activation=torch.nn.ReLU(), dropout_prob=0.0, use_layer_norm=False):
+=======
+                 activation=torch.nn.ReLU()):
+>>>>>>> 775cd0e61edf08e1fae2a1d773c6ccdae3cf9eff
         super(Net_lstm, self).__init__()
         self.alpha = torch.tensor(alpha)
         self.sigma_rec = torch.tensor(sigma_rec)
@@ -18,6 +22,7 @@ class Net_lstm(torch.nn.Module):
         self.activation = activation
         self.dale = dale
         self.device = 'gpu'
+<<<<<<< HEAD
         self.use_dropout = dropout_prob > 0
         self.use_layer_norm = use_layer_norm
         
@@ -25,6 +30,11 @@ class Net_lstm(torch.nn.Module):
             self.lstm_dropout = nn.Dropout(p=dropout_prob)
         if self.use_layer_norm:
             self.layer_norm = nn.LayerNorm(n)
+=======
+        self.lstm_dropout = nn.Dropout(p =.20) #new
+        self.layer_norm = nn.LayerNorm(n) #new
+        #self.hidden = None
+>>>>>>> 775cd0e61edf08e1fae2a1d773c6ccdae3cf9eff
 
         if torch.cuda.is_available():
             self.device = 'cuda'
@@ -43,6 +53,7 @@ class Net_lstm(torch.nn.Module):
         # Initialize LSTM
         self.lstm = nn.LSTM(input_size, self.n, batch_first=True)
 
+<<<<<<< HEAD
         nn.init.orthogonal_(self.lstm.weight_hh_l0)
         nn.init.orthogonal_(self.lstm.weight_ih_l0)
 
@@ -51,6 +62,16 @@ class Net_lstm(torch.nn.Module):
 
         self.output_layer = nn.Linear(self.n, self.output_size, bias=False)
         nn.init.xavier_normal_(self.output_layer.weight, gain=0.1)
+=======
+        nn.init.orthogonal_(self.lstm.weight_hh_l0) #new
+        nn.init.orthogonal_(self.lstm.weight_ih_l0) #new
+
+        nn.init.zeros_(self.lstm.bias_ih_l0) #new
+        nn.init.zeros_(self.lstm.bias_hh_l0) #new
+
+        self.output_layer = nn.Linear(self.n, self.output_size, bias=False)
+        nn.init.xavier_normal_(self.output_layer.weight, gain=0.1) #new
+>>>>>>> 775cd0e61edf08e1fae2a1d773c6ccdae3cf9eff
 
         # Apply Dale's law and balance network
         if dale:
@@ -90,10 +111,15 @@ class Net_lstm(torch.nn.Module):
         # Forward propagate LSTM
         out, hidden = self.lstm(u + noise, hidden)
 
+<<<<<<< HEAD
         if self.use_layer_norm:
             out = self.layer_norm(out)
         if self.use_dropout:
             out = self.lstm_dropout(out)
+=======
+        out = self.layer_norm(out)  # Apply layer normalization to LSTM output
+        out = self.lstm_dropout(out)  # Apply dropout to LSTM output
+>>>>>>> 775cd0e61edf08e1fae2a1d773c6ccdae3cf9eff
         
         # Apply output layer
         out = self.output_layer(out)
