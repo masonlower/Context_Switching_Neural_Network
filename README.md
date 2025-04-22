@@ -1,6 +1,6 @@
 # RNN Context Training Project
 
-<<<<<<< HEAD
+
 A neural network implementation for context-dependent decision making using a T-maze task environment. Task based on Akhil Bandi task, publication to come. Mice are given visual and auditory stimuli at the same time. Only one of these are relevant for a block of tasks and this changes once mice reach an accuracy threshold. Code was originally adapted from [Engel Lab Latent Net](https://github.com/engellab/latent-net) github repository.
 
 ## Project Structure
@@ -20,7 +20,7 @@ A neural network implementation for context-dependent decision making using a T-
 -`WeightsAndActivity`: images of above networks weights and output unit activities by trial type. Code for plots are in UniToMulti.ipynb (should have added to plotting functions).
 
 
-=======
+
 A neural network implementation for context-dependent decision making using a T-maze task environment. Task based on Akhil Bandi task, publication to come. Mice are given visual and auditory stimuli at the same time. Only one of these are relevant for a block of tasks and this changes once mice reach an accuracy threshold. Code was adapted from [Engel Lab Latent Net](https://github.com/engellab/latent-net) github repository.
 
 ## Project Structure
@@ -38,7 +38,7 @@ A neural network implementation for context-dependent decision making using a T-
 ## On Going Work
 
 This repository is still a work in progress, activities for some trained models as well as where this is heading before being pushed to github can be followed [here](https://docs.google.com/document/d/12hmnnvVeFA1bg5FMkSGNtCJjN8OK23KWdj3bKicKtl0/edit?tab=t.0)
->>>>>>> 775cd0e61edf08e1fae2a1d773c6ccdae3cf9eff
+
 
 ## Features
 
@@ -46,11 +46,9 @@ This repository is still a work in progress, activities for some trained models 
 - Configurable context switching between visual and audio cues
 - Customizable trial parameters and coherence levels
 - Generates input streams with controlled noise levels
-<<<<<<< HEAD
 - Turn context and trial counter inputs on and off (work in progress)
 - LSTM temporal dependency, as well as cell and hidden state tracking.
-=======
->>>>>>> 775cd0e61edf08e1fae2a1d773c6ccdae3cf9eff
+
 
 ## Usage
 
@@ -64,16 +62,11 @@ The environment generates trials with the following properties:
 
 - NumPy
 - PyTorch
-<<<<<<< HEAD
 - Python 3.x
 - seaborn
 - scipy
 - Pandas
-=======
-- Pandas
-- Scipy
-- Seaborn
->>>>>>> 775cd0e61edf08e1fae2a1d773c6ccdae3cf9eff
+
 
 ## License
 
